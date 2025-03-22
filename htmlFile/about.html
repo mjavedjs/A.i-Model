@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About AI Model</title>
+    <!-- Correct FontAwesome CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+    
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 700px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transform: translateY(-50px);
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        /* Header Styles */
+        h1 {
+            color: #2c3e50;
+            font-size: 30px;
+            margin-bottom: 10px;
+            animation: slideIn 1s ease-in-out forwards;
+        }
+
+        /* Text Styles */
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+            animation: slideUp 1s ease-in-out forwards;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #0073b1;
+            font-size: 28px;
+            transition: transform 0.3s ease, color 0.3s ease;
+            opacity: 0;
+            animation: fadeInIcons 1.2s ease-in-out forwards;
+        }
+
+        .social-icons a:hover {
+            color: #004a75;
+            transform: scale(1.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInIcons {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>About AI Model</h1>
+        <p>This AI model, developed by <strong>Muhammad Javed</strong>, is designed to understand and generate human-like text. It is inspired by advanced AI systems like ChatGPT and aims to enhance user interaction through natural language processing.</p>
+        <p>The goal is to create an efficient and responsive AI chatbot that can assist users in various domains, including technology, education, and productivity.</p>
+
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/feed/"target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/mjavedjs" target="_blank"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </div>
+
+</body>
+</html>

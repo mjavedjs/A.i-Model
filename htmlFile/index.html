@@ -5,37 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/styles/./index.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <title>Javus</title>
 </head>
 <body>
-    <div class="main-container">
-        <div class="date-container">
-            <h1>March 21, 2025 <span>Product</span></h1>
+    <div class="main-container" >
+        <div class="date-container" data-aos="fade-down" >
+            <h3>March 21, 2025 <span>Product</span></h3>
         </div>
-        <div class="container-home-page">
+        <div class="container-home-page" data-aos="fade-up" >
             <h2>Introduction To Javus</h2>
             <div class="button-container">
-                <button>Try Javus</button>
-                <a href="/htmlFile/home.html">Learn About Javus</a>
+                <button data-aos="fade-right"  >Try Javus</button>
+                <a  data-aos="fade-left"  href="/htmlFile/about.html">Learn About Javus</a>
             </div>
         </div>
-        <div class="method-container">
+        <div class="method-container" data-aos="fade-right">
             <p>
                 We trained this model using Reinforcement Learning from Human Feedback (RLHF), using the same methods as InstructGPT, but with slight differences in the data collection setup. We trained an initial model using supervised fine-tuning: human AI trainers provided conversations in which they played both sides—the user and an AI assistant. We gave the trainers access to model-written suggestions to help them compose their responses. We mixed this new dialogue dataset with the InstructGPT dataset, which we transformed into a dialogue format.
             </p>
         </div>
        
-        <div class="image-container">
-            <img id="main-img" src="/assets/chatgpt_diagram_light.webp" alt="chat img">
+        <div class="image-container" data-aos="fade-left">
             <img id="main-img" src="/assets/chatgpt_diagram_light.webp" alt="chat img">
         </div>
     </div>
     <div class="team-member">
         <ul>
              <li>Team Members</li>
-            <li><span>Javed:Developer</span></li>
-            <li> <span>Ayaz Khan:Reascher</span> </li>
-            <li> <span>Hassnain Abbas:Desinger</span></li>
+            <li data-aos="fade-left" ><span>Muhammad Javed:Developer</span></li>
+            <li data-aos="fade-right" > <span>Ayaz Khan:Reascher</span> </li>
+            <li data-aos="fade-up"> <span>Hassnain Abbas:Desinger</span></li>
         </ul>
         
     </div>
@@ -53,4 +54,8 @@
         </div>
     </footer>
 </body>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+  </script>
 </html>
