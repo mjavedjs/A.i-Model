@@ -9,34 +9,32 @@ const googleBtn = document.querySelector('#googleSignIn');
 const provider = new GoogleAuthProvider();
 
 googleBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    
-    signInWithPopup(auth, provider)
-        .then(async (result) => {
-            const user = result.user;
-            console.log("User signed in: ", user);
-
-            // Check if user already exists in Firestore (optional)
-            const userRef = collection(db, "users");
-            
-            try {
-                await addDoc(userRef, {
-                    fullName: user.fullName, // Google provides this
-                    email: user.email,
-                    uid: user.uid,
-                    profileImg: user.photoURL, // Google profile pic
-                    createdAt: new Date(),
-                });
-
-                console.log("User data stored successfully!");
-                window.location = 'home.html'; // Redirect to dashboard
-            } catch (error) {
-                console.error("Error adding document: ", error);
-            }
-        })
-        .catch((error) => {
-            console.error("Google Sign-In Error: ", error.message);
-        });
+  e.preventDefault();
+  
+  signInWithPopup(auth, provider)
+      .then(async (result) => {
+          const user = result.user;
+          console.log("User signed in: ", user);
+          // Check if user already exists in Firestore (optional)
+          const userRef = collection(db, "users");
+          
+          try {
+              await addDoc(userRef, {
+                  fullName: user.displayName, // Corrected field name
+                  email: user.email,
+                  uid: user.uid,
+                  profileImg: user.photoURL, // Google profile pic
+                  createdAt: new Date(),
+              });
+              console.log("User data stored successfully!");
+              window.location = 'home.html'; // Redirect to dashboard
+          } catch (error) {
+              console.error("Error adding document: ", error);
+          }
+      })
+      .catch((error) => {
+          console.error("Google Sign-In Error: ", error.message);
+      });
 });
 
 //login google end
