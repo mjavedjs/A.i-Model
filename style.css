@@ -126,6 +126,29 @@ i {
   }
 }
 
+.btn-primary {
+  transition: all 0.3s ease-in-out;
+}
+.btn-primary:hover {
+  background-color: #0056b3; /* Darker shade of blue */
+  transform: scale(1.05);
+  border:none;
+  font-size:18px;
+
+}
+
+/* Hover effect for Google Sign-In Button */
+.btn-success {
+  transition: all 0.3s ease-in-out;
+
+}
+.btn-success:hover {
+  background-color: #218838; /* Darker green */
+  transform: scale(1.05);
+  border: none;
+  font-size:18px;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

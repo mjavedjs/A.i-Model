@@ -1,7 +1,26 @@
 import { createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
-
 import { auth,db} from "./config.js";
+
+const form = document.querySelector('#form');
+const email = document.querySelector('#registerEmail');
+const password = document.querySelector('#registerPassword');
+const fullName = document.querySelector('#fullName');
+let userProfilePicUrl = " "
+let  myWidget = cloudinary.createUploadWidget({
+  cloudName: 'dhro6nafp', 
+  uploadPreset: 'my_preset'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info);
+      userProfilePicUrl = result.info.secure_url;
+    }
+  }
+)
+document.getElementById("upload_widget").addEventListener("click", function(e){
+  e.preventDefault()
+    myWidget.open();
+  }, false);
+  
 
 // login with google start 
 const googleBtn = document.querySelector('#googleSignIn');
@@ -17,7 +36,6 @@ googleBtn.addEventListener('click', async (e) => {
           console.log("User signed in: ", user);
           // Check if user already exists in Firestore (optional)
           const userRef = collection(db, "users");
-          
           try {
               await addDoc(userRef, {
                   fullName: user.displayName, // Corrected field name
@@ -28,6 +46,7 @@ googleBtn.addEventListener('click', async (e) => {
               });
               console.log("User data stored successfully!");
               window.location = 'home.html'; // Redirect to dashboard
+
           } catch (error) {
               console.error("Error adding document: ", error);
           }
@@ -39,28 +58,6 @@ googleBtn.addEventListener('click', async (e) => {
 
 //login google end
 
-
-
-const form = document.querySelector('#form');
-const email = document.querySelector('#registerEmail');
-const password = document.querySelector('#registerPassword');
-const fullName = document.querySelector('#fullName');
-let userProfilePicUrl = " "
-
-let  myWidget = cloudinary.createUploadWidget({
-    cloudName: 'dhro6nafp', 
-    uploadPreset: 'my_preset'}, (error, result) => { 
-      if (!error && result && result.event === "success") { 
-        console.log('Done! Here is the image info: ', result.info);
-        userProfilePicUrl = result.info.secure_url;
-      }
-    }
-  )
-  document.getElementById("upload_widget").addEventListener("click", function(e){
-    e.preventDefault()
-      myWidget.open();
-    }, false);
-    
   form.addEventListener('submit',(e)=>{
     e.preventDefault();
    createUserWithEmailAndPassword(auth, email.value, password.value)
