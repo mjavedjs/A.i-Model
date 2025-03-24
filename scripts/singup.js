@@ -21,7 +21,7 @@ googleBtn.addEventListener('click', async (e) => {
             
             try {
                 await addDoc(userRef, {
-                    fullName: user.displayName, // Google provides this
+                    fullName: user.fullName, // Google provides this
                     email: user.email,
                     uid: user.uid,
                     profileImg: user.photoURL, // Google profile pic
@@ -29,7 +29,7 @@ googleBtn.addEventListener('click', async (e) => {
                 });
 
                 console.log("User data stored successfully!");
-                window.location = 'dashboard.html'; // Redirect to dashboard
+                window.location = 'home.html'; // Redirect to dashboard
             } catch (error) {
                 console.error("Error adding document: ", error);
             }
