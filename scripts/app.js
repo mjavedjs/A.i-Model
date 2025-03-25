@@ -1,9 +1,10 @@
-import { getDocs ,  where , query, collection} from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
+import { getDocs ,  where , query, collection,} from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
 import {auth,db} from "./config.js";
-import {onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
+import {onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
 
    const userProfile = document.querySelector(".profile-img");
    const userName = document.querySelector('#name');
+   const logbtn = document.querySelector('#logout-btn')
   
 
    onAuthStateChanged(auth, async(user) => {
@@ -13,14 +14,30 @@ import {onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.5.0/fire
        const uid = user.uid;
        console.log(uid)
          getdata(uid);
- 
        // ...
      } else {
-       // User is signed out
-       console.log('singout ')
-       
+       console.log('singout ');
+       if (window.location.pathname !== "/login.html") {
+        window.location.href = "login.html";
+      }
        // ...
      }
+
+
+     logbtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      signOut(auth)
+        .then(() => {
+          // Sign-out successful.
+          console.log("user Sign-out successful ");
+          window.location = "login.html";
+        })
+        .catch((error) => {
+          // An error happened.
+          console.log(error);
+        });
+    });
+    
    });
  async function getdata(uid){
      let user = null

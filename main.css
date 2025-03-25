@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #f8f9fa;
+    height: 100vh;
+    font-family: "Outfit", sans-serif;
+  }
+.profile-img {
+    width: 50px; /* Adjust the size as needed */
+    height: 50px; /* Keep height same as width for a circle */
+    border-radius: 50%; /* Makes it circular */
+    object-fit: cover; /* Ensures the image fills the circle properly */
+}
+.logo {
+    font-weight: bold;
+    color: black; /* Default text color */
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    display: inline-block; /* Ensures transform works properly */
+}
+
+.logo:hover {
+    color: rgba(255, 255, 255, 0.5); /* Half-white effect */
+    transform: scale(1.1); /* Slight zoom effect */
+    cursor: pointer;
+}
