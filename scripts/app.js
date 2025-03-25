@@ -4,9 +4,7 @@ import {onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.5.0/fire
 
    const userProfile = document.querySelector(".profile-img");
    const userName = document.querySelector('#name');
-   const trybtn = document.querySelector("#trybtn").addEventListener('click',()=>{
-       window.location = 'singup.html'
-   })
+  
 
    onAuthStateChanged(auth, async(user) => {
      if (user) {
@@ -32,8 +30,10 @@ import {onAuthStateChanged} from "https://www.gstatic.com/firebasejs/11.5.0/fire
     if (docSnap) {
       docSnap.forEach((doc) => {
           console.log("User Data:", doc.data());
-          userName.textContent = doc.data().name;
-          userProfile.src = doc.data().profileImg || "default-profile.png"; // Fallback image
+           const data = doc.data();
+           console.log(data)
+          userName.innerHTML = data.fullName
+          userProfile.src = data.profileImg || "default-profile.png"; // Fallback image
         });
 } 
 else {

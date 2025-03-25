@@ -7,6 +7,7 @@ const email = document.querySelector('#registerEmail');
 const password = document.querySelector('#registerPassword');
 const fullName = document.querySelector('#fullName');
 let userProfilePicUrl = " "
+
 let  myWidget = cloudinary.createUploadWidget({
   cloudName: 'dhro6nafp', 
   uploadPreset: 'my_preset'}, (error, result) => { 
