@@ -17,26 +17,44 @@ import {onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/11.
        // ...
      } else {
        console.log('singout ');
+        window.location = 'index.html'
+    ; // Yeh har bar user ko login page par bhej raha hai
+
       //  if (window.location.pathname !== "/login.html") {
       //   window.location.href = "login.html";
       // }
        // ...
      }
 
+// sing out btn
 
-     logbtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      signOut(auth)
-        .then(() => {
-          // Sign-out successful.
-          console.log("user Sign-out successful ");
-          window.location = "login.html";
-        })
-        .catch((error) => {
-          // An error happened.
-          console.log(error);
-        });
+logbtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+      console.log("user Sign-out successful ");
+      window.location= "singup.html";
+    })
+    .catch((error) => {
+      // An error happened.
+      console.log(error);
     });
+})
+  
+logbtn.addEventListener("click", async (e) => {
+  e.preventDefault();
+  try {
+    await signOut(auth);
+    console.log("User signed out successfully.");
+    setTimeout(() => {
+      window.location.href = "singup.html"; // Ensure correct redirection
+    }, 500); // Small delay to let auth state update
+  } catch (error) {
+    console.error("Logout Error: ", error);
+  }
+});
+
     
    });
  async function getdata(uid){
@@ -67,3 +85,4 @@ else {
 
 
 //  main page work satarted here 
+

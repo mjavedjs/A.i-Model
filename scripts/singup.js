@@ -1,7 +1,6 @@
 import { createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup} from "https://www.gstatic.com/firebasejs/11.5.0/firebase-auth.js";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-firestore.js";
-import { auth,db} from "./config.js";
-
+import { auth,db } from "./config.js";
 const form = document.querySelector('#form');
 const email = document.querySelector('#registerEmail');
 const password = document.querySelector('#registerPassword');
@@ -89,3 +88,5 @@ googleBtn.addEventListener('click', async (e) => {
    console.log(errorMessage);
  });
 })
+
+
