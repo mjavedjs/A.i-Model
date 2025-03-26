@@ -17,9 +17,9 @@ import {onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/11.
        // ...
      } else {
        console.log('singout ');
-       if (window.location.pathname !== "/login.html") {
-        window.location.href = "login.html";
-      }
+      //  if (window.location.pathname !== "/login.html") {
+      //   window.location.href = "login.html";
+      // }
        // ...
      }
 
