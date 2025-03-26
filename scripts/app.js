@@ -42,19 +42,6 @@ logbtn.addEventListener("click", (e) => {
     });
 })
   
-logbtn.addEventListener("click", async (e) => {
-  e.preventDefault();
-  try {
-    await signOut(auth);
-    console.log("User signed out successfully.");
-    setTimeout(() => {
-      window.location.href = "singup.html"; // Ensure correct redirection
-    }, 500); // Small delay to let auth state update
-  } catch (error) {
-    console.error("Logout Error: ", error);
-  }
-});
-
     
    });
  async function getdata(uid){
