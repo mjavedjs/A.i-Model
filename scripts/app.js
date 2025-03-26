@@ -17,7 +17,7 @@ import {onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/11.
        // ...
      } else {
        console.log('singout ');
-        window.location = 'index.html'
+        window.location = 'singup.html'
     ; // Yeh har bar user ko login page par bhej raha hai
 
       //  if (window.location.pathname !== "/login.html") {
