@@ -8,7 +8,8 @@
     <title>Document</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <!-- navbar stared -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white ">
         <div class="container-fluid">
             <h3 class="logo text-black text-opacity-60">Javus</h3>
             <div class="ms-auto d-flex align-items-center">
@@ -18,6 +19,63 @@
             </div>
         </div>
     </nav>
+    <!-- navbar End  -->
+    <div class="container-main">
+        <div class="sideNavigation">
+            <div class="topbarAction">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="sideNavBtn">
+                <button>
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="collapse1">New Chat</span></button>
+            </div>
+            <div class="chatHistory">
+                <h5>Recent</h5>
+                <ul>
+                    <li> <i class="fa-solid fa-message"></i> how are today Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi, omnis.</li>
+                   
+                </ul>
+            </div>
+            <div class="actionList">
+                <button class="transparentBtn">
+                    <i class="fa-solid fa-question"></i>
+                    <span class="collapse"></span> Help </button>
+                <button>
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span class="collapse"></span> Activity</button>
+                <button> 
+                    <i class="fa-solid fa-gear"></i>
+                   <span class="collapse">  </span>Settings   
+                </button>
+            </div>
+        </div>
+        <!-- // chatwindow start -->
+         <div class="chatwindow">
+            <div class="startContent">
+                    <p>Hello <span id="userName"> userName</span></p>
+                <h4 class="BrandQuestion">What can I help with?</h4>
+            </div>
+            <div class="chatContent">
+                <div class="result"> </div>
+            </div>
+            <div class="input-area">
+                <input type="text" placeholder="Please Enter Your Prompt">
+                <div class="icon-group">
+                    <i class="fa-solid fa-image"></i>
+                    <i class="fa-solid fa-microphone"></i>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <p class="privacyPolicy">
+                    Privacy Policy for AI Chat Model
+                    We collect user input data to improve
+                     chatbot responses while ensuring data security and user privac
+                </p>
+            </div>
+         </div>
+        <!-- // chatwindow End-->
+    </div>
+    
 </body>
 <script src="https://kit.fontawesome.com/a792d62b7d.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

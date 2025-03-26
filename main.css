@@ -8,6 +8,8 @@ body {
     background-color: #f8f9fa;
     height: 100vh;
     font-family: "Outfit", sans-serif;
+    display: flex;
+    flex-direction: column;
   }
 .profile-img {
     width: 50px; /* Adjust the size as needed */
@@ -26,4 +28,124 @@ body {
     color: rgba(255, 255, 255, 0.5); /* Half-white effect */
     transform: scale(1.1); /* Slight zoom effect */
     cursor: pointer;
+}
+i{
+    font-size:16px;
+}
+.container-main{
+  height:100%;
+  display:flex;
+
+}
+
+.sideNavigation{
+     width:300px;
+     /* background-color:#f8f9fa; */
+     border-right:1px solid black;
+     padding:0.50rem;
+     transition:all 0.3s ease-in-out;
+}
+.sideNavigation .topbarAction{
+     margin:15px;
+     cursor: pointer;
+}
+.sideNavigation .topbarAction i{
+    font-size:18px;
+}
+.sideNavigation .topbarAction .sideNavBtn{
+
+ margin-top:50px;
+ margin-bottom:30px ;
+
+}
+.sideNavigation .chatHistory{
+     max-width:250px;
+     overflow:scroll;
+
+}
+
+.sideNavigation .chatHistory::-webkit-scrollbar {
+     display:none;
+}
+.sideNavigation .chatHistory h5{
+    font-size:0.875rem;
+    font-weight:500;
+    line-height:1.25rem; 
+    margin:15px 5px;
+}
+ul{
+    list-style: none;
+}
+ 
+.sideNavigation .chatHistory li{
+     height:40px;
+     border-radius:4px;
+    display:flex;
+    align-items:center;
+    padding: 10px;
+    cursor: pointer;
+    font-size:14px;
+    display:inline-block;
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+.sideNavigation .sideNavBtn button {
+    height: 40px;
+    width: 140px;
+    border-radius: 50px;
+    outline: none;
+    border: none;
+    background: #dde3ea;
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* Center content horizontally */
+    gap: 8px; /* Add space between icon and text */
+    transition: all 0.3s ease-in-out;
+}
+
+.sideNavigation .actionList{
+ position:fixed;
+ bottom:15px;
+ display:flex;
+ flex-direction:column;
+}
+
+.sideNavigation .actionList button{
+     margin:1px;
+     padding:10px;
+     text-align:left;
+     border-radius: 50px;
+     border:none;
+     outline:none;
+     width:230px;
+     cursor: pointer;
+     background:transparent ;
+     transition:0.3s  ;
+   }
+   .sideNavigation .actionList button:hover {
+    background: #dde3ea; /* Light background on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+.sideNavigation .actionList button i {
+    padding:0px 10px;
+}
+.chatwindow{
+    width:100%;
+    margin:5rem;
+    display:flex;
+    justify-content:center;
+}
+
+.chatwindow .startContent{
+      min-width:830px;
+}
+.chatwindow .startContent h4{
+    font-size:3rem;
+    line-height:4rem;
+    letter-spacing:normal;
+    font-weight:500;
+    letter-spacing:-0.03;
+    margin-top:18px;
 }

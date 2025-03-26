@@ -64,3 +64,6 @@ else {
      
 }
 
+
+
+//  main page work satarted here 
