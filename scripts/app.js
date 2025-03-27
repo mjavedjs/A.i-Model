@@ -73,3 +73,27 @@ else {
 
 //  main page work satarted here 
 
+// Mobile menu toggle
+document.querySelector('.topbarAction i').addEventListener('click', function() {
+  document.querySelector('.sideNavigation').classList.toggle('active');
+});
+
+// Close menu when clicking outside on mobile
+document.addEventListener('click', function(event) {
+  const sideNav = document.querySelector('.sideNavigation');
+  const menuButton = document.querySelector('.topbarAction i');
+  
+  if (window.innerWidth < 992 && 
+      !sideNav.contains(event.target) && 
+      event.target !== menuButton && 
+      !menuButton.contains(event.target)) {
+      sideNav.classList.remove('active');
+  }
+});
+
+// Update side navigation width when resizing
+window.addEventListener('resize', function() {
+  if (window.innerWidth >= 992) {
+      document.querySelector('.sideNavigation').classList.remove('active');
+  }
+});

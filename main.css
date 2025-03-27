@@ -10,7 +10,40 @@ body {
     font-family: "Outfit", sans-serif;
     display: flex;
     flex-direction: column;
+    overflow:hidden;
   }
+  /* Make navbar items compact */
+.navbar {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Profile image sizing */
+.profile-img {
+    width: 32px;
+    height: 32px;
+}
+
+/* Smaller logout button */
+#logout-btn {
+    font-size: 0.8rem;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: white;
+        padding: 0.5rem 1rem;
+        margin-top: 0.5rem;
+        border-radius: 0.25rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    /* Make the collapse take full width */
+    .navbar-collapse.collapse.show {
+        width: 100%;
+    }
+}
 .profile-img {
     width: 50px; /* Adjust the size as needed */
     height: 50px; /* Keep height same as width for a circle */
@@ -136,6 +169,7 @@ ul{
     margin:5rem;
     display:flex;
     justify-content:center;
+    margin-bottom:200px;
 }
 
 .chatwindow .startContent{
@@ -148,4 +182,215 @@ ul{
     font-weight:500;
     letter-spacing:-0.03;
     margin-top:18px;
+    color:#c4c7c5;
+}
+.chatwindow .chatContent {
+    overflow:scroll;
+    /* width:900px; */
+    height:650px;
+
+}
+.chatwindow .chatContent::-webkit-scrollbar {
+ 
+    display:none;
+
+}
+.input-area {
+     position:fixed;
+     bottom:30px;
+     display:flex;
+     border-radius:50px;
+     padding:4px 8px;
+    background:#eee;
+
+}
+.input-area input{
+    width:500px;
+    height:50px;
+    padding:20px;
+    outline:none;
+    border:none;
+    font-size:16px;
+    border-radius:50px;
+    background:#eee;
+}
+.input-area .icon-group{
+    position: relative;
+    right:5px;
+
+}
+.input-area .icon-group i {
+    padding:15px;
+    font-size:20px;
+    cursor: pointer;
+    transition: 0.5s ;
+}
+.input-area .icon-group i:nth-child(3){
+    display:none;
+}
+/* Existing CSS remains the same until the end */
+
+/* =============== MEDIA QUERIES =============== */
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media (max-width: 1200px) {
+    .chatwindow .startContent {
+        min-width: 700px;
+    }
+    
+    .input-area input {
+        width: 450px;
+    }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media (max-width: 991px) {
+    .container-main {
+        position: relative;
+    }
+    
+    .sideNavigation {
+        position: fixed;
+        left: -300px;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+        background-color: white;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        transition: left 0.3s ease;
+    }
+    
+    .sideNavigation.active {
+        left: 0;
+    }
+    
+    .chatwindow {
+        margin-left: 0;
+        padding: 1rem;
+        width: 100%;
+    }
+    
+    .chatwindow .startContent {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .input-area {
+        width: 90%;
+    }
+    
+    .input-area input {
+        width: 100%;
+    }
+    
+    .topbarAction {
+        display: block !important;
+    }
+}
+
+/* Small devices (landscape phones, 576px to 767px) */
+@media (max-width: 767px) {
+    .chatwindow .startContent h4 {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+    
+    .input-area {
+        width: 95%;
+        bottom: 15px;
+    }
+    
+    .input-area .icon-group i {
+        padding: 10px;
+    }
+    
+    .input-area .icon-group i:nth-child(1),
+    .input-area .icon-group i:nth-child(2) {
+        display: none;
+    }
+    
+    .input-area .icon-group i:nth-child(3) {
+        display: block;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575px) {
+    /* ... (keep your existing styles) ... */
+    
+    .input-area {
+        position: fixed;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 30px); /* 15px padding on each side */
+        max-width: 100%;
+        margin: 0 auto;
+        border-radius: 20px;
+        padding: 4px 8px;
+        background: #eee;
+    }
+    
+    .input-area input {
+        height: 45px;
+        width: calc(100% - 50px); /* Account for icon space */
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+    
+    .input-area .icon-group {
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    
+    .input-area .icon-group i {
+        padding: 8px;
+        font-size: 18px;
+    }
+}
+
+/* Toggle classes for mobile menu */
+@media (min-width: 992px) {
+    .sideNavigation {
+        width: 300px !important;
+        left: 0 !important;
+    }
+    
+    .topbarAction {
+        display: none !important;
+    }
+}
+/* Hide mobile elements on desktop */
+@media (min-width: 992px) {
+    #name-mobile {
+        display: none !important;
+    }
+}
+
+/* Hide desktop elements on mobile */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background-color: white;
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    #logout-btn {
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    /* Hide the desktop profile info when collapsed */
+    .navbar-collapse:not(.show) #name {
+        display: none;
+    }
+    
+    .navbar-collapse:not(.show) .profile-img {
+        display: none;
+    }
 }
