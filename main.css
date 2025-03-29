@@ -228,7 +228,7 @@ body {
     border: none;
     outline: none;
     font-size: 1rem;
-    background: transparent;
+    background:rgb(207, 207, 207);
 }
 
 .input-area .icon-group {
