@@ -200,8 +200,10 @@ function getResponse(question, appendHistory) {
       <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; position: relative;">
         <div style="width: calc(100% - 50px);">
           ${formattedResponse}
+
         </div>
         <i class="fas fa-copy" style="cursor: pointer;" onclick="copyText(this)"></i>
+
       </div>`;
   
     result.scrollTop = result.scrollHeight;
@@ -216,6 +218,13 @@ function getResponse(question, appendHistory) {
       </div>`;
   });
 }
+
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('fa-copy')) {
+    copyText(event.target);
+  }
+});
+
 
 function copyText(icon) {
   let text = icon.previousElementSibling.innerText;
