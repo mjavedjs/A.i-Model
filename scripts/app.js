@@ -137,29 +137,23 @@ sednRequest.addEventListener('click',()=>{
 function getResponse(question, appendHistory) {
   console.log(question);
   const chathistory = document.querySelector('.chatHistory ul');
-    let li = document.createElement('li');
-    li.textContent = question;
-    chathistory.appendChild(li);
-    chathistory.scrollLeft = chathistory.scrollWidth; // Auto-scroll to end
-  // Clear input field
+  let li = document.createElement('li');
+  li.textContent = question;
+  chathistory.appendChild(li);
+  chathistory.scrollLeft = chathistory.scrollWidth; // Auto-scroll to end
+  
   input_area.value = "";
-
-  // Hide start content and show chat content
   startContent.style.display = 'none';
   chatContent.style.display = 'block';
-
-  // Get logged-in user's image
+  
   let userImg = userData.length > 0 ? userData[0].profileImg : "default.jpg";
-
-  // Create elements for the new question
   let questionDiv = document.createElement('div');
   questionDiv.innerHTML = `
     <div class="resultTitle" style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
       <img src="${userImg}" alt="User Image" style="width: 40px; height: 40px; border-radius: 50%;">
       <p style="font-weight: 500; font-size: 1rem; padding: 8px; border-radius: 5px; max-width: 100%;">${question}</p>
     </div>`;
-
-  // Create loading indicator for the answer
+  
   let answerDiv = document.createElement('div');
   answerDiv.innerHTML = `
     <div class="loading-spinner" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
@@ -168,26 +162,22 @@ function getResponse(question, appendHistory) {
         <span style="margin-left: 10px; font-size: 0.9rem;">Loading...</span>
       </div>
     </div>`;
-
-  // Append the new question and loading answer to the result container
+  
   result.appendChild(questionDiv);
   result.appendChild(answerDiv);
-
-  // Set fixed dimensions and make result container visible
+  
   if(!result.classList.contains('visible')) {
     result.style.width = '1000px';
     result.style.height = '500px';
-    result.style.overflowY = 'auto'; // Make the entire chat history scrollable
+    result.style.overflowY = 'auto';
     result.classList.add('visible');
   }
   
-  // Scroll to the bottom to show new messages
   result.scrollTop = result.scrollHeight;
-
-  // API Request
+  
   const apikey = "AIzaSyBRDG-mCuMgeE9khNQIPvahLsTWG4zvQ5g";
   const api = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apikey}`;
-
+  
   fetch(api, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -200,22 +190,20 @@ function getResponse(question, appendHistory) {
     let responseText = data.candidates && data.candidates.length > 0
       ? data.candidates[0].content.parts[0].text
       : "Sorry, no response available.";
-
-    // Format the response
+  
     const formattedResponse = responseText
       .replace(/\n/g, '<br>')
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.*?)\*/g, '<em>$1</em>');
-
-    // Replace loading indicator with the actual response
+  
     answerDiv.innerHTML = `
-      <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px;">
+      <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; position: relative;">
         <div style="width: calc(100% - 50px);">
           ${formattedResponse}
         </div>
+        <i class="fas fa-copy" style="cursor: pointer;" onclick="copyText(this)"></i>
       </div>`;
-
-    // Scroll to the bottom to show new response
+  
     result.scrollTop = result.scrollHeight;
   })
   .catch((error) => {
@@ -226,5 +214,24 @@ function getResponse(question, appendHistory) {
           Error fetching response. Please try again.
         </div>
       </div>`;
+  });
+}
+
+function copyText(icon) {
+  let text = icon.previousElementSibling.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    let alertBox = document.createElement('div');
+    alertBox.innerText = "Text copied!";
+    alertBox.style.position = "absolute";
+    alertBox.style.top = "-20px";
+    alertBox.style.right = "0";
+    alertBox.style.background = "#333";
+    alertBox.style.color = "#fff";
+    alertBox.style.padding = "5px 10px";
+    alertBox.style.borderRadius = "5px";
+    alertBox.style.fontSize = "0.8rem";
+    alertBox.style.transition = "opacity 0.5s";
+    icon.parentElement.appendChild(alertBox);
+    setTimeout(() => { alertBox.style.opacity = "0"; setTimeout(() => alertBox.remove(), 500); }, 1000);
   });
 }
