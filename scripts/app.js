@@ -134,6 +134,91 @@ sednRequest.addEventListener('click',()=>{
 
 
 
+// function getResponse(question, appendHistory) {
+//   console.log(question);
+//   const chathistory = document.querySelector('.chatHistory ul');
+//   let li = document.createElement('li');
+//   li.textContent = question;
+//   chathistory.appendChild(li);
+//   chathistory.scrollLeft = chathistory.scrollWidth; // Auto-scroll to end
+  
+//   input_area.value = "";
+//   startContent.style.display = 'none';
+//   chatContent.style.display = 'block';
+  
+//   let userImg = userData.length > 0 ? userData[0].profileImg : "default.jpg";
+//   let questionDiv = document.createElement('div');
+//   questionDiv.innerHTML = `
+//     <div class="resultTitle" style="display: flex; align-items: center; gap: 10px; margin-bottom: 5px;">
+//       <img src="${userImg}" alt="User Image" style="width: 40px; height: 40px; border-radius: 50%;">
+//       <p style="font-weight: 500; font-size: 1rem; padding: 8px; border-radius: 5px; max-width: 100%;">${question}</p>
+//     </div>`;
+  
+//   let answerDiv = document.createElement('div');
+//   answerDiv.innerHTML = `
+//     <div class="loading-spinner" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+//       <div style="display: flex; align-items: center;">
+//         <div class="spinner" style="width: 20px; height: 20px; border: 3px solid #ddd; border-top: 3px solid #333; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+//         <span style="margin-left: 10px; font-size: 0.9rem;">Loading...</span>
+//       </div>
+//     </div>`;
+  
+//   result.appendChild(questionDiv);
+//   result.appendChild(answerDiv);
+  
+//   if(!result.classList.contains('visible')) {
+//     result.style.width = '1000px';
+//     result.style.height = '500px';
+//     result.style.overflowY = 'auto';
+//     result.classList.add('visible');
+//   }
+  
+//   result.scrollTop = result.scrollHeight;
+  
+//   const apikey = "AIzaSyBRDG-mCuMgeE9khNQIPvahLsTWG4zvQ5g";
+//   const api = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apikey}`;
+  
+//   fetch(api, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({
+//       contents: [{ parts: [{ text: question }] }]
+//     })
+//   })
+//   .then((res) => res.json())
+//   .then((data) => {
+//     let responseText = data.candidates && data.candidates.length > 0
+//       ? data.candidates[0].content.parts[0].text
+//       : "Sorry, no response available.";
+  
+//     const formattedResponse = responseText
+//       .replace(/\n/g, '<br>')
+//       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+//       .replace(/\*(.*?)\*/g, '<em>$1</em>');
+  
+//     answerDiv.innerHTML = `
+//       <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; position: relative;">
+//         <div style="width: calc(100% - 50px);">
+//           ${formattedResponse}
+
+//         </div>
+//         <i class="fas fa-copy" style="cursor: pointer;" onclick="copyText(this)"></i>
+
+//       </div>`;
+  
+//     result.scrollTop = result.scrollHeight;
+//   })
+//   .catch((error) => {
+//     console.error("Error:", error);
+//     answerDiv.innerHTML = `
+//       <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; color: red;">
+//         <div style="width: calc(100% - 50px);">
+//           Error fetching response. Please try again.
+//         </div>
+//       </div>`;
+//   });
+// }
+
 function getResponse(question, appendHistory) {
   console.log(question);
   const chathistory = document.querySelector('.chatHistory ul');
@@ -156,17 +241,15 @@ function getResponse(question, appendHistory) {
   
   let answerDiv = document.createElement('div');
   answerDiv.innerHTML = `
-    <div class="loading-spinner" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-      <div style="display: flex; align-items: center;">
-        <div class="spinner" style="width: 20px; height: 20px; border: 3px solid #ddd; border-top: 3px solid #333; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-        <span style="margin-left: 10px; font-size: 0.9rem;">Loading...</span>
-      </div>
+    <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; position: relative;">
+      <div style="width: calc(100% - 50px);" class="typewriter-text"></div>
+      <i class="fas fa-copy" style="cursor: pointer;" onclick="copyText(this)"></i>
     </div>`;
   
   result.appendChild(questionDiv);
   result.appendChild(answerDiv);
   
-  if(!result.classList.contains('visible')) {
+  if (!result.classList.contains('visible')) {
     result.style.width = '1000px';
     result.style.height = '500px';
     result.style.overflowY = 'auto';
@@ -190,23 +273,34 @@ function getResponse(question, appendHistory) {
     let responseText = data.candidates && data.candidates.length > 0
       ? data.candidates[0].content.parts[0].text
       : "Sorry, no response available.";
-  
-    const formattedResponse = responseText
-      .replace(/\n/g, '<br>')
+
+    const textContainer = answerDiv.querySelector('.typewriter-text');
+
+    // Format for final display (bold, italics, line breaks)
+    let rawText = responseText
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>');
-  
-    answerDiv.innerHTML = `
-      <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 20px; position: relative;">
-        <div style="width: calc(100% - 50px);">
-          ${formattedResponse}
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(/\n/g, '<br>');
 
-        </div>
-        <i class="fas fa-copy" style="cursor: pointer;" onclick="copyText(this)"></i>
+    // Remove formatting for character-by-character typing
+    let tempDiv = document.createElement("div");
+    tempDiv.innerHTML = rawText;
+    let plainText = tempDiv.textContent || tempDiv.innerText;
 
-      </div>`;
-  
-    result.scrollTop = result.scrollHeight;
+    let i = 0;
+    function typeWriter() {
+      if (i < plainText.length) {
+        textContainer.innerHTML += plainText.charAt(i)
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+        i++;
+        result.scrollTop = result.scrollHeight;
+        setTimeout(typeWriter, 30); // typing speed
+      } else {
+        textContainer.innerHTML = rawText; // Add formatted text after typing
+      }
+    }
+    typeWriter();
   })
   .catch((error) => {
     console.error("Error:", error);

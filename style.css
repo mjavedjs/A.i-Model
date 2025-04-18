@@ -12,6 +12,16 @@ body {
   font-family: "Outfit", sans-serif;
   display: flex;
 }
+.typewriter-text::after {
+  content: '|';
+  animation: blink 1s infinite;
+  color: #555;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
 
 /* Main container */
 .container {
